@@ -15,7 +15,6 @@ def homepage():
 def dashboard():
     flash("flash test!!!!")
     flash("fladfasdfsaassh test!!!!")
-    flash("asdfas asfsafs!!!!")
     return render_template("dashboard.html", TOPIC_DICT=TOPIC_DICT)
 
 
