@@ -14,32 +14,42 @@
             <img style="height:80px" src="{{ url_for('static', filename='img/profile.png') }}">
         </a>
 
-        <a href="/dashboard/" style="padding-left:20px">
+        <a href="/dashboard" style="padding-left:20px">
             <button type="button" class="btn btn-primary" aria-label="Left Align"
                     style="margin-top: 5px; margin-bottom: 5px; height: 44px; margin-right: 15px">
                 <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>--> Dashboard
             </button>
         </a>
         <ul class="nav navbar-nav navbar-right">
-
-            <div style="margin-right: 10px; margin-left: 15px; margin-top: 5px; margin-bottom: 5px;"
+            <div style="margin-right: 10px; margin-left: 15px; margin-top: 15px; margin-bottom: 5px;"
                  class="container-fluid">
-
-                <a href="/login/" style="padding-right:15px">
-                    <span class="glyphicon glyphicon-log-in"></span> Login
-                </a>
-
-                <a href="/signup/" style="padding-right:15px">
-                    <span class="glyphicon glyphicon-pencil"></span> Sign up
-                </a>
+                <h5>
+                    {% if session.logged_in %}
+                    <span style="margin-right:380px">Flask back-end dev environment</span>
+                    <a href="/pygalgraph" style="padding-right:15px">
+                        <span class="glyphicon glyphicon glyphicon-stats"></span> Graph</a>
+                    <a href="/include_example" style="padding-right:15px">
+                        <span class="glyphicon glyphicon glyphicon-font"></span> Comments</a>
+                    <a href="/email" style="padding-right:15px">
+                        <span class="glyphicon glyphicon-envelope"></span> Email</a>
+                    <a href="/downloads" style="padding-right:15px">
+                        <span class="glyphicon glyphicon-download-alt"></span> Downloads</a>
+                    <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    {% else %}
+                    <span style="margin-right:650px">Flask back-end dev environment</span>
+                    <a href="/login" style="padding-right:15px">
+                        <span class="glyphicon glyphicon-log-in"></span> Login </a>
+                    <a href="/signup" style="padding-right:15px">
+                        <span class="glyphicon glyphicon-pencil"></span> Sign up</a>
+                    {% endif %}
+                </h5>
             </div>
         </ul>
     </div>
-
 </header>
 
 <body>
-<div class="container" align="center" style="min-height:100%">
+<div class="container" style="min-height:100%">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}

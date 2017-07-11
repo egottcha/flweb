@@ -1,0 +1,29 @@
+{% extends "header.html" %}
+{% block body %}
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+			$(function() {
+			  $('a#process_input').bind('click', function() {
+				$.getJSON('/background_process', {
+				  jqresp: $('input[name="jqresp"]').val(),
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+
+    </script>
+</head>
+<div class='container'>
+    <h3>jQuery test page, How ya doin?</h3>
+    <form>
+        <input type=text size=5 name=jqresp>
+        <a href=# id=process_input>
+            <button class='btn btn-default'>Submit</button>
+        </a>
+    </form>
+    <p id=result></p>
+</div>
+{% endblock %}
