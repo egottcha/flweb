@@ -59,7 +59,7 @@ def signup_page():
             username = form.username.data
             email = form.email.data
             password = sha256_crypt.encrypt((str(form.password.data)))
-            c, conn = mysqlDB.conn()
+            c, conn = mysqlDB()
 
             x = c.execute("SELECT * FROM userbase WHERE name = '%s'" % username)
 
@@ -112,7 +112,7 @@ def logout():
 def login_page():
     error = ''
     try:
-        c, conn = mysqlDB.conn()
+        c, conn = mysqlDB()
 
         c.execute("SELECT * FROM userbase WHERE name = '%s'" % request.form['username'])
 

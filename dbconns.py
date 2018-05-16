@@ -1,4 +1,7 @@
 class oracleDB:
+    def __init__(self):
+        self.cursor, self.connection = self.__conn()
+
     def __conn(self):
         try:
             import cx_Oracle
@@ -40,7 +43,10 @@ class oracleDB:
 
 
 class mysqlDB:
-    def conn(this):
+    def __init__(self):
+        self.cursor, self.connection = self.conn()
+
+    def conn(self):
         try:
             import MySQLdb
             from auth import mysql
@@ -57,9 +63,9 @@ class mysqlDB:
         except Exception as e:
             return str(e)
 
-    def fetch(this, sql):
+    def fetch(self, sql):
         try:
-            c, conn = this.conn()
+            c, conn = self.conn()
             c.execute(sql)
 
             return c.fetchall()
@@ -78,7 +84,11 @@ class mysqlDB:
         except Exception as e:
             return str(e)
 
+
 class cassandraDB:
+    def __init__(self):
+        self.cursor, self.connection = self.conn()
+
     def conn(self):
         from cassandra.cluster import Cluster
         import datetime
@@ -117,6 +127,9 @@ class cassandraDB:
 
 
 class mongoDB:
+    def __init__(self):
+        self.cursor, self.connection = self.conn()
+
     def conn(self):
         from pymongo import MongoClient
         import datetime
